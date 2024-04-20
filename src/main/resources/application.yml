@@ -1,0 +1,33 @@
+spring:
+  application:
+       name: kafka
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kafka
+    username: postgres
+    password: 786@admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  devtools:
+     restart:
+        enabled: true
+     livereload:
+        enabled: true
+  kafka:
+     bootstrap-server: localhost:9092
+     consumer:
+       group_id: "testGroup"
+       auto-offset-reset: earliest
+       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+       properties:
+           spring.json.trusted.packages: '*'
+     producer:
+       key-serializer: org.apache.kafka.common.serialization.StringSerializer
+       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    
+  
+  
